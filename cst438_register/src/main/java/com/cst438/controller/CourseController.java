@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cst438.domain.CourseDTOG;
+import com.cst438.domain.CourseDTOG.GradeDTO;
 import com.cst438.domain.Enrollment;
 import com.cst438.domain.EnrollmentRepository;
 
@@ -22,10 +23,17 @@ public class CourseController {
 	 */
 	@PutMapping("/course/{course_id}")
 	@Transactional
-	public void updateCourseGrades( @RequestBody CourseDTOG courseDTO, @PathVariable("course_id") int course_id) {
+	public void updateCourseGrades( @RequestBody CourseDTOG courseDTOG, @PathVariable("course_id") int course_id) {
 		
-		//TODO  complete this method in homework 4
-		
+		//Update grades one by one for each student in course
+		for (GradeDTO gradeDTO: courseDTOG.grades)
+		{
+			//find enrollment for student
+			Enrollment enrollment = enrollmentRepository.findByEmailAndCourseId(gradeDTO.student_email, course_id);
+			//update grade and save to database
+			enrollment.setCourseGrade(gradeDTO.grade);
+			enrollmentRepository.save(enrollment);
+		}
 	}
 
 }

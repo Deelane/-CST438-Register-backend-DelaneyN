@@ -5,6 +5,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,7 +23,6 @@ import com.cst438.domain.Student;
 import com.cst438.domain.StudentRepository;
 import com.cst438.service.GradebookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Optional;
 
 @ContextConfiguration(classes = { StudentController.class })
 @AutoConfigureMockMvc(addFilters = false)
