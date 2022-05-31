@@ -3,6 +3,9 @@ package com.cst438.domain;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +24,8 @@ public interface EnrollmentRepository extends CrudRepository <Enrollment, Intege
 	@SuppressWarnings("unchecked")
 	Enrollment save(Enrollment e);
 	
+	@Query("delete from Enrollment where student_id=:student_id")
+	@Modifying
+	@Transactional
+	void deleteAllByStudentId(@Param("student_id") int student_id);
 }
