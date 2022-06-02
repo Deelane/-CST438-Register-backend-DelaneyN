@@ -32,3 +32,4 @@ build/
 
 ### Resources ###
 src/test/resources/*
+src/main/resources/*
