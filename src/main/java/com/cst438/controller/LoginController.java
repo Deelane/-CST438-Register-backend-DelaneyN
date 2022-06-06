@@ -3,8 +3,10 @@ package com.cst438.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
 public class LoginController {
 	
 	/*
@@ -21,6 +23,7 @@ public class LoginController {
 	@GetMapping("/user")
 	public String user (@AuthenticationPrincipal OAuth2User principal){
 		// used by front end to display user name.
+		System.out.println("Prinicpal: " + principal.getName() + " " + principal.getAttribute("email"));
 		return "redirect:" + redirect_url;
 	}
 }
