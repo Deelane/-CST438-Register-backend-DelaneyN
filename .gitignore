@@ -31,4 +31,3 @@ build/
 .vscode/
 
 ### Resources ###
-src/test/resources/*
